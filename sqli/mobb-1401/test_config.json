@@ -1,0 +1,47 @@
+{
+  "tests": [
+    [
+      "FORTIFY",
+      6
+    ],
+    [
+      "FORTIFY",
+      7
+    ],
+    [
+      "CODEQL",
+      2
+    ],
+    [
+      "CODEQL",
+      3
+    ],
+    [
+      "SNYK",
+      1
+    ],
+    [
+      "SNYK",
+      2
+    ]
+  ],
+  "no_fix": [
+    [
+      "CODEQL",
+      2
+    ]
+  ],
+  "no_fix_answers": {
+    "CODEQL_2": {
+      "java_version_greater_or_equal_19": {
+        "java_version_greater_or_equal_19": "no"
+      },
+      "contains_control_characters": {
+        "contains_control_characters": "yes"
+      },
+      "taint_var_type": {
+        "taint_var_type": "integer"
+      }
+    }
+  }
+}

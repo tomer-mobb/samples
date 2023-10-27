@@ -1,0 +1,7 @@
+{
+  "tests": [
+    ["FORTIFY", 5],
+    ["SNYK", 0],
+    ["CODEQL", 1]
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "tests": [
+    [
+      "SNYK",
+      0
+    ],
+    [
+      "CHECKMARX",
+      0
+    ],
+    [
+      "CODEQL",
+      1
+    ],
+    [
+      "FORTIFY",
+      5
+    ]
+  ],
+  "tests_answers": {
+    "SNYK_0": {
+      "install_apache_commons_text": {
+        "install_apache_commons_text": "no"
+      }
+    }
+  },
+  "no_fix": [
+    [
+      "SNYK",
+      0
+    ],
+    [
+      "CHECKMARX",
+      0
+    ],
+    [
+      "CODEQL",
+      1
+    ],
+    [
+      "FORTIFY",
+      5
+    ]
+  ],
+  "no_fix_answers": {
+    "SNYK_0": {
+      "is_unix_shell_command_part": {
+        "is_unix_shell_command_part": "no"
+      }
+    },
+    "CHECKMARX_0": {
+      "is_unix_shell_command_part": {
+        "is_unix_shell_command_part": "no"
+      }
+    },
+    "CODEQL_1": {
+      "is_unix_shell_command_part": {
+        "is_unix_shell_command_part": "no"
+      }
+    },
+    "FORTIFY_5": {
+      "is_unix_shell_command_part": {
+        "is_unix_shell_command_part": "no"
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+    "tests": [
+        [
+            "SNYK",
+            0
+        ],
+        [
+            "CHECKMARX",
+            0
+        ],
+        [
+            "CODEQL",
+            1
+        ],
+        [
+            "FORTIFY",
+            7
+        ]
+    ]
+}

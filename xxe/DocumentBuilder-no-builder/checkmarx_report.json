@@ -1,0 +1,194 @@
+{
+  "results": [
+    {
+      "type": "sast",
+      "label": "sast",
+      "id": "45840034",
+      "similarityId": "721182429",
+      "status": "RECURRENT",
+      "state": "TO_VERIFY",
+      "severity": "MEDIUM",
+      "created": "2023-03-30T09:26:51Z",
+      "firstFoundAt": "2023-02-20T16:16:52Z",
+      "foundAt": "2023-03-30T09:26:51Z",
+      "firstScanId": "f87c71bd-48db-418b-96b3-fc35ed6b5ad3",
+      "description": "The web-application does not define an HSTS header, leaving it vulnerable to attack.\n\n",
+      "descriptionHTML": "<p>The web-application does not define an HSTS header, leaving it vulnerable to attack.</p>\n",
+      "data": {
+        "queryId": 11666704984805000000,
+        "queryName": "Missing_HSTS_Header",
+        "group": "Java_Medium_Threat",
+        "resultHash": "xQ6NcN2lFcTgX7ImhxIv25gNA54=",
+        "languageName": "Java",
+        "nodes": [
+          {
+            "id": "sDbRYSxVHgr7jQf+42sGseV4gfs=",
+            "line": 31,
+            "name": "println",
+            "column": 37,
+            "length": 1,
+            "method": "doPost",
+            "nodeID": 353,
+            "domType": "MethodInvokeExpr",
+            "fileName": "/src/main/java/Test.java",
+            "fullName": "Test.doPost.println",
+            "typeName": "println",
+            "methodLine": 19,
+            "definitions": "0"
+          }
+        ]
+      },
+      "comments": {},
+      "vulnerabilityDetails": {
+        "cweId": 346,
+        "cvss": {},
+        "compliances": [
+          "OWASP Top 10 2021"
+        ]
+      }
+    },
+    {
+      "type": "sast",
+      "label": "sast",
+      "id": "45840035",
+      "similarityId": "520882366",
+      "status": "NEW",
+      "state": "TO_VERIFY",
+      "severity": "MEDIUM",
+      "created": "2023-03-30T09:26:51Z",
+      "firstFoundAt": "2023-03-30T09:26:49Z",
+      "foundAt": "2023-03-30T09:26:51Z",
+      "firstScanId": "f87c71bd-48db-418b-96b3-fc35ed6b5ad3",
+      "description": "The doPost loads and parses XML using parse, at line 27 of /src/main/java/Test.java.\n\nThis XML was received earlier from user input, \"\"xml\"\", at line 22 of /src/main/java/Test.java. Note that parse is set to automatically load and replace any DTD entity references in the XML, including references to external files.\n\n",
+      "descriptionHTML": "<p>The doPost loads and parses XML using parse, at line 27 of /src/main/java/Test.java.</p>\n\n<p>This XML was received earlier from user input, &ldquo;&ldquo;xml&rdquo;&ldquo;, at line 22 of /src/main/java/Test.java. Note that parse is set to automatically load and replace any DTD entity references in the XML, including references to external files.</p>\n",
+      "data": {
+        "queryId": 14846722546022343000,
+        "queryName": "Improper_Restriction_of_XXE_Ref",
+        "group": "Java_Medium_Threat",
+        "resultHash": "ZMAONdMlAYJGLztP3kNTSG7Ggzs=",
+        "languageName": "Java",
+        "nodes": [
+          {
+            "id": "pXbJnSQY8m9kxCEFkVnuDl34lCo=",
+            "line": 22,
+            "name": "\"\"xml\"\"",
+            "column": 45,
+            "length": 5,
+            "method": "doPost",
+            "nodeID": 256,
+            "domType": "StringLiteral",
+            "fileName": "/src/main/java/Test.java",
+            "fullName": "\"\"xml\"\"",
+            "typeName": "StringLiteral",
+            "methodLine": 19,
+            "definitions": "-1"
+          },
+          {
+            "id": "OyBmH6HzqBB/D1zSeelxSTY/ML0=",
+            "line": 22,
+            "name": "getParameter",
+            "column": 44,
+            "length": 1,
+            "method": "doPost",
+            "nodeID": 252,
+            "domType": "MethodInvokeExpr",
+            "fileName": "/src/main/java/Test.java",
+            "fullName": "Test.doPost.request.getParameter",
+            "typeName": "getParameter",
+            "methodLine": 19,
+            "definitions": "0"
+          },
+          {
+            "id": "DJMvbf27oOc1or14m3Pws+7d6Gs=",
+            "line": 22,
+            "name": "param",
+            "column": 16,
+            "length": 5,
+            "method": "doPost",
+            "nodeID": 248,
+            "domType": "Declarator",
+            "fileName": "/src/main/java/Test.java",
+            "fullName": "Test.doPost.param",
+            "typeName": "String",
+            "methodLine": 19,
+            "definitions": "1"
+          },
+          {
+            "id": "Tk2aBWv9FcrTYhuckqBjTvl7e4w=",
+            "line": 27,
+            "name": "param",
+            "column": 81,
+            "length": 5,
+            "method": "doPost",
+            "nodeID": 319,
+            "domType": "UnknownReference",
+            "fileName": "/src/main/java/Test.java",
+            "fullName": "Test.doPost.param",
+            "typeName": "String",
+            "methodLine": 19,
+            "definitions": "1"
+          },
+          {
+            "id": "xTP8USh/E26Up65ZNRUJtLrtjcI=",
+            "line": 27,
+            "name": "StringReader",
+            "column": 64,
+            "length": 3,
+            "method": "doPost",
+            "nodeID": 312,
+            "domType": "ObjectCreateExpr",
+            "fileName": "/src/main/java/Test.java",
+            "fullName": "StringReader",
+            "typeName": "StringReader",
+            "methodLine": 19,
+            "definitions": "-1"
+          },
+          {
+            "id": "8FI6oyYSTwXcHd2X7PkRu/6nVe8=",
+            "line": 27,
+            "name": "InputSource",
+            "column": 48,
+            "length": 3,
+            "method": "doPost",
+            "nodeID": 305,
+            "domType": "ObjectCreateExpr",
+            "fileName": "/src/main/java/Test.java",
+            "fullName": "InputSource",
+            "typeName": "InputSource",
+            "methodLine": 19,
+            "definitions": "-1"
+          },
+          {
+            "id": "CkwROkkntGbussJl5yu7WOqjtqQ=",
+            "line": 27,
+            "name": "parse",
+            "column": 47,
+            "length": 1,
+            "method": "doPost",
+            "nodeID": 301,
+            "domType": "MethodInvokeExpr",
+            "fileName": "/src/main/java/Test.java",
+            "fullName": "Test.doPost.parse",
+            "typeName": "parse",
+            "methodLine": 19,
+            "definitions": "0"
+          }
+        ]
+      },
+      "comments": {},
+      "vulnerabilityDetails": {
+        "cweId": 611,
+        "cvss": {},
+        "compliances": [
+          "ASD STIG 4.10",
+          "FISMA 2014",
+          "NIST SP 800-53",
+          "OWASP Top 10 2017",
+          "OWASP Top 10 2021"
+        ]
+      }
+    }
+  ],
+  "totalCount": 2,
+  "scanID": "f87c71bd-48db-418b-96b3-fc35ed6b5ad3"
+}

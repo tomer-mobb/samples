@@ -1,0 +1,15 @@
+{
+  "tests": [
+    [
+      "SNYK",
+      0
+    ]
+  ],
+  "tests_answers": {
+    "SNYK_0": {
+      "is_path_relative_only_no": {
+        "is_path_relative_only": "no"
+      }
+    }
+  }
+}

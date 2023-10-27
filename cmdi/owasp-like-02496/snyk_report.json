@@ -1,0 +1,800 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "SnykCode",
+          "semanticVersion": "1.0.0",
+          "version": "1.0.0",
+          "rules": [
+            {
+              "id": "java/CommandInjection",
+              "name": "CommandInjection",
+              "shortDescription": {
+                "text": "Command Injection"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "help": {
+                "markdown": "## Details\n\nWith an OS command injection attack a web application user can pass commands directly to the system shell, attached to a legitimate request. These commands can then be executed on the application server, potentially leading to harmful consequences, including data exposure or deletion. Like code injection attacks, command injection attacks are essentially a failure of data validation. Unlike code injection attacks, which introduce new code, command injection attacks use existing system functions, often taking advantage of the application's unnecessarily high privilege level, increasing the risk of serious harm and reputational damage.\n\n### Best practices for prevention\n- Never trust user input. Assume any input may transmit harmful values.\n- Adopt the principle of least privilege: No application should have a greater access level than needed to run its required tasks.\n- Control user access policies on a task-by-task basis.\n- Don't pass user input directly to the system; use libraries or APIs that lack system access.\n- Where shell commands must be passed, escape values using functions like shlex for Python, or escapeshellarg() for PHP.\n- Sanitize user input with regular expressions to define permitted characters along with maximum string length.\n- Convert special characters such as `& |  ; $ > < \\ !` before passing to the server.\n- Whitelist permitted commands and validate user responses against these expectations.\n- Remember that code injection can take place on multiple fronts: GET and POST requests, but also cookies and HTTP headers.\n- Ensure up-to-date patching across all systems to remediate known vulnerabilities.\n- Educate all team members on safer data handling procedures to prevent attacks.",
+                "text": ""
+              },
+              "properties": {
+                "tags": [
+                  "java"
+                ],
+                "categories": [
+                  "Security"
+                ],
+                "exampleCommitFixes": [
+                  {
+                    "commitURL": "https://github.com/The1andONLYdave/fireinstaller/commit/fb7660b43da93c2a92ac9769da114a2f9dd65860?diff=split#diff-957e20ff003efa34011e317a1df33919L283",
+                    "lines": [
+                      {
+                        "line": "  CharSequence buf = buildOutput();",
+                        "lineNumber": 296,
+                        "lineChange": "none"
+                      },
+                      {
+                        "line": "fireip =",
+                        "lineNumber": 298,
+                        "lineChange": "none"
+                      },
+                      {
+                        "line": "          ((EditText) findViewById(R.id.editText1)).getText().toString().trim();",
+                        "lineNumber": 299,
+                        "lineChange": "none"
+                      },
+                      {
+                        "line": "          Log.d(\"Fireinstaller\",\"IP ausgelesen:\"+fireip);",
+                        "lineNumber": 301,
+                        "lineChange": "none"
+                      },
+                      {
+                        "line": "  try {",
+                        "lineNumber": 303,
+                        "lineChange": "none"
+                      },
+                      {
+                        "line": "Log.d(\"Fireinstaller2\", \"connecting adb to \"+fireip);",
+                        "lineNumber": 340,
+                        "lineChange": "none"
+                      },
+                      {
+                        "line": "Process adb = null;",
+                        "lineNumber": 341,
+                        "lineChange": "none"
+                      },
+                      {
+                        "line": "try {",
+                        "lineNumber": 342,
+                        "lineChange": "none"
+                      },
+                      {
+                        "line": "  adb = Runtime.getRuntime().exec(\"adb connect \"+fireip+\"\\n\");",
+                        "lineNumber": 327,
+                        "lineChange": "removed"
+                      },
+                      {
+                        "line": "  adb = Runtime.getRuntime().exec(\"sh\");",
+                        "lineNumber": 343,
+                        "lineChange": "added"
+                      },
+                      {
+                        "line": "  ",
+                        "lineNumber": 344,
+                        "lineChange": "none"
+                      },
+                      {
+                        "line": "} catch (IOException e1) {",
+                        "lineNumber": 345,
+                        "lineChange": "none"
+                      },
+                      {
+                        "line": "\tDataOutputStream outputStream = new DataOutputStream(adb.getOutputStream());",
+                        "lineNumber": 350,
+                        "lineChange": "none"
+                      },
+                      {
+                        "line": "try {",
+                        "lineNumber": 351,
+                        "lineChange": "added"
+                      },
+                      {
+                        "line": "  outputStream.writeBytes(\"/system/bin/adb\" +\" connect \"+fireip+\"\\n \");",
+                        "lineNumber": 352,
+                        "lineChange": "added"
+                      },
+                      {
+                        "line": "  outputStream.flush();",
+                        "lineNumber": 353,
+                        "lineChange": "added"
+                      },
+                      {
+                        "line": "  Log.d(\"fireinstaller\", \"/system/bin/adb\" +\" connect \"+fireip+\"\\n \");",
+                        "lineNumber": 354,
+                        "lineChange": "added"
+                      },
+                      {
+                        "line": "} catch (IOException e1) {",
+                        "lineNumber": 355,
+                        "lineChange": "added"
+                      },
+                      {
+                        "line": "  // TODO Auto-generated catch block",
+                        "lineNumber": 356,
+                        "lineChange": "added"
+                      },
+                      {
+                        "line": "          public String PushApk(String data) throws IOException   {",
+                        "lineNumber": 513,
+                        "lineChange": "none"
+                      },
+                      {
+                        "line": "              ",
+                        "lineNumber": 514,
+                        "lineChange": "none"
+                      },
+                      {
+                        "line": "    Log.d(\"Fireinstaller\", \"pushing to device \"+fireip);",
+                        "lineNumber": 515,
+                        "lineChange": "none"
+                      },
+                      {
+                        "line": "//TODO pushing to firetv",
+                        "lineNumber": 517,
+                        "lineChange": "none"
+                      }
+                    ]
+                  },
+                  {
+                    "commitURL": "https://github.com/GreenButtonAlliance/OpenESPI-ThirdParty-java/commit/35a9bf9a5fd15f40ea46e7ee999dcba1cf57de1c?diff=split#diff-1981a4f6c48e4ff546f7b00a26069861L70",
+                    "lines": [
+                      {
+                        "line": "@ResponseBody",
+                        "lineNumber": 67,
+                        "lineChange": "none"
+                      },
+                      {
+                        "line": "public void doCommand(HttpServletResponse response,",
+                        "lineNumber": 68,
+                        "lineChange": "none"
+                      },
+                      {
+                        "line": "    @RequestParam Map<String, String> params, InputStream stream)",
+                        "lineNumber": 69,
+                        "lineChange": "none"
+                      },
+                      {
+                        "line": "    throws IOException {",
+                        "lineNumber": 70,
+                        "lineChange": "none"
+                      },
+                      {
+                        "line": "  try {",
+                        "lineNumber": 72,
+                        "lineChange": "none"
+                      },
+                      {
+                        "line": "    try {",
+                        "lineNumber": 73,
+                        "lineChange": "none"
+                      },
+                      {
+                        "line": "      String command = params.get(\"command\");",
+                        "lineNumber": 74,
+                        "lineChange": "removed"
+                      },
+                      {
+                        "line": "      System.out.println(\"[Manage] \" + command);",
+                        "lineNumber": 75,
+                        "lineChange": "removed"
+                      },
+                      {
+                        "line": "      String commandString = params.get(\"command\");",
+                        "lineNumber": 74,
+                        "lineChange": "added"
+                      },
+                      {
+                        "line": "      System.out.println(\"[Manage] \" + commandString);",
+                        "lineNumber": 75,
+                        "lineChange": "added"
+                      },
+                      {
+                        "line": "      ServletOutputStream output = response.getOutputStream();",
+                        "lineNumber": 76,
+                        "lineChange": "none"
+                      },
+                      {
+                        "line": "      ",
+                        "lineNumber": 77,
+                        "lineChange": "none"
+                      },
+                      {
+                        "line": "      output.println(\"[Manage] Restricted Management Interface\");",
+                        "lineNumber": 78,
+                        "lineChange": "none"
+                      },
+                      {
+                        "line": "      output.println(\"[Manage] Request: \" + command);",
+                        "lineNumber": 79,
+                        "lineChange": "removed"
+                      },
+                      {
+                        "line": "      Process p = Runtime.getRuntime().exec(command);",
+                        "lineNumber": 81,
+                        "lineChange": "removed"
+                      },
+                      {
+                        "line": "      p.waitFor();",
+                        "lineNumber": 82,
+                        "lineChange": "removed"
+                      },
+                      {
+                        "line": "      output.println(\"[Manage] Result: \");",
+                        "lineNumber": 83,
+                        "lineChange": "removed"
+                      },
+                      {
+                        "line": "      output.println(\"[Manage] Request: \" + commandString);",
+                        "lineNumber": 79,
+                        "lineChange": "added"
+                      },
+                      {
+                        "line": "\t\t",
+                        "lineNumber": 86,
+                        "lineChange": "none"
+                      },
+                      {
+                        "line": "String command=null;",
+                        "lineNumber": 81,
+                        "lineChange": "added"
+                      },
+                      {
+                        "line": "if(command != null) {",
+                        "lineNumber": 91,
+                        "lineChange": "added"
+                      },
+                      {
+                        "line": "  Process p = Runtime.getRuntime().exec(command);",
+                        "lineNumber": 92,
+                        "lineChange": "added"
+                      },
+                      {
+                        "line": "  p.waitFor();",
+                        "lineNumber": 93,
+                        "lineChange": "added"
+                      },
+                      {
+                        "line": "  output.println(\"[Manage] Result: \");",
+                        "lineNumber": 94,
+                        "lineChange": "added"
+                      }
+                    ]
+                  },
+                  {
+                    "commitURL": "https://github.com/GreenButtonAlliance/OpenESPI-DataCustodian-java/commit/3e1b42ba4df357aa07b2eb0a1141aad4664a7959?diff=split#diff-8ee7af8e5dde501c93df6605af6e1a33L68",
+                    "lines": [
+                      {
+                        "line": "@ResponseBody",
+                        "lineNumber": 66,
+                        "lineChange": "none"
+                      },
+                      {
+                        "line": "public void doCommand(HttpServletResponse response,",
+                        "lineNumber": 67,
+                        "lineChange": "none"
+                      },
+                      {
+                        "line": "    @RequestParam Map<String, String> params, InputStream stream)",
+                        "lineNumber": 68,
+                        "lineChange": "none"
+                      },
+                      {
+                        "line": "    throws IOException {",
+                        "lineNumber": 69,
+                        "lineChange": "none"
+                      },
+                      {
+                        "line": "  try {",
+                        "lineNumber": 71,
+                        "lineChange": "none"
+                      },
+                      {
+                        "line": "    try {",
+                        "lineNumber": 72,
+                        "lineChange": "none"
+                      },
+                      {
+                        "line": "      String command = params.get(\"command\");",
+                        "lineNumber": 72,
+                        "lineChange": "removed"
+                      },
+                      {
+                        "line": "      System.out.println(\"[Manage] \" + command);",
+                        "lineNumber": 73,
+                        "lineChange": "removed"
+                      },
+                      {
+                        "line": "      String commandString = params.get(\"command\");",
+                        "lineNumber": 73,
+                        "lineChange": "added"
+                      },
+                      {
+                        "line": "      System.out.println(\"[Manage] \" + commandString);",
+                        "lineNumber": 74,
+                        "lineChange": "added"
+                      },
+                      {
+                        "line": "      ServletOutputStream output = response.getOutputStream();",
+                        "lineNumber": 75,
+                        "lineChange": "none"
+                      },
+                      {
+                        "line": "      ",
+                        "lineNumber": 76,
+                        "lineChange": "none"
+                      },
+                      {
+                        "line": "      output.println(\"[Manage] Restricted Management Interface\");",
+                        "lineNumber": 77,
+                        "lineChange": "none"
+                      },
+                      {
+                        "line": "      output.println(\"[Manage] Request: \" + command);",
+                        "lineNumber": 77,
+                        "lineChange": "removed"
+                      },
+                      {
+                        "line": "      Process p = Runtime.getRuntime().exec(command);",
+                        "lineNumber": 79,
+                        "lineChange": "removed"
+                      },
+                      {
+                        "line": "      p.waitFor();",
+                        "lineNumber": 80,
+                        "lineChange": "removed"
+                      },
+                      {
+                        "line": "      output.println(\"[Manage] Result: \");",
+                        "lineNumber": 81,
+                        "lineChange": "removed"
+                      },
+                      {
+                        "line": "      output.println(\"[Manage] Request: \" + commandString);",
+                        "lineNumber": 78,
+                        "lineChange": "added"
+                      },
+                      {
+                        "line": "\t\t",
+                        "lineNumber": 84,
+                        "lineChange": "none"
+                      },
+                      {
+                        "line": "String command=null;",
+                        "lineNumber": 80,
+                        "lineChange": "added"
+                      },
+                      {
+                        "line": "if(command != null) {",
+                        "lineNumber": 91,
+                        "lineChange": "added"
+                      },
+                      {
+                        "line": "  Process p = Runtime.getRuntime().exec(command);",
+                        "lineNumber": 92,
+                        "lineChange": "added"
+                      },
+                      {
+                        "line": "  p.waitFor();",
+                        "lineNumber": 93,
+                        "lineChange": "added"
+                      },
+                      {
+                        "line": "  output.println(\"[Manage] Result: \");",
+                        "lineNumber": 94,
+                        "lineChange": "added"
+                      }
+                    ]
+                  }
+                ],
+                "exampleCommitDescriptions": [
+                  "Changed tracevis-server version to 2.0.0-SNAPSHOT",
+                  "Replace shelling out to chmod with reflection to use android.os.FileUtils.",
+                  "Subscription/Usagepoint;"
+                ],
+                "precision": "very-high",
+                "repoDatasetSize": 16,
+                "cwe": [
+                  "CWE-78"
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "java/CommandInjection",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "Unsanitized input from an HTTP parameter flows into command, where it is used as a shell command. This may result in a Command Injection vulnerability.",
+            "markdown": "Unsanitized input from {0} {1} into {2}, where it is used as a shell command. This may result in a Command Injection vulnerability.",
+            "arguments": [
+              "[an HTTP parameter](0)",
+              "[flows](1),(2),(3),(4),(5),(6),(7),(8),(9),(10),(11),(12),(13),(14),(15),(16)",
+              "[command](17)"
+            ]
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/BenchmarkTest02496.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 62,
+                  "endLine": 62,
+                  "startColumn": 9,
+                  "endColumn": 19
+                }
+              }
+            }
+          ],
+          "fingerprints": {
+            "0": "b481782bc8014beb37c9905cce20073c2974a8b2465f00b016963bfae6e27994",
+            "1": "8df8fa68.a2002c3c.bf05a696.544d9b21.7909ac61.3aec218f.df7e59ba.8caefe4c.8df8fa68.672552cb.bf05a696.544d9b21.025462d2.aebaea90.8b3093f8.8caefe4c"
+          },
+          "codeFlows": [
+            {
+              "threadFlows": [
+                {
+                  "locations": [
+                    {
+                      "location": {
+                        "id": 0,
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "src/main/java/BenchmarkTest02496.java",
+                            "uriBaseId": "%SRCROOT%"
+                          },
+                          "region": {
+                            "startLine": 41,
+                            "endLine": 41,
+                            "startColumn": 27,
+                            "endColumn": 53
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "location": {
+                        "id": 1,
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "src/main/java/BenchmarkTest02496.java",
+                            "uriBaseId": "%SRCROOT%"
+                          },
+                          "region": {
+                            "startLine": 41,
+                            "endLine": 41,
+                            "startColumn": 27,
+                            "endColumn": 53
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "location": {
+                        "id": 2,
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "src/main/java/BenchmarkTest02496.java",
+                            "uriBaseId": "%SRCROOT%"
+                          },
+                          "region": {
+                            "startLine": 41,
+                            "endLine": 41,
+                            "startColumn": 18,
+                            "endColumn": 75
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "location": {
+                        "id": 3,
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "src/main/java/BenchmarkTest02496.java",
+                            "uriBaseId": "%SRCROOT%"
+                          },
+                          "region": {
+                            "startLine": 43,
+                            "endLine": 43,
+                            "startColumn": 31,
+                            "endColumn": 37
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "location": {
+                        "id": 4,
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "src/main/java/BenchmarkTest02496.java",
+                            "uriBaseId": "%SRCROOT%"
+                          },
+                          "region": {
+                            "startLine": 43,
+                            "endLine": 43,
+                            "startColumn": 58,
+                            "endColumn": 64
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "location": {
+                        "id": 5,
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "src/main/java/BenchmarkTest02496.java",
+                            "uriBaseId": "%SRCROOT%"
+                          },
+                          "region": {
+                            "startLine": 43,
+                            "endLine": 43,
+                            "startColumn": 58,
+                            "endColumn": 67
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "location": {
+                        "id": 6,
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "src/main/java/BenchmarkTest02496.java",
+                            "uriBaseId": "%SRCROOT%"
+                          },
+                          "region": {
+                            "startLine": 43,
+                            "endLine": 43,
+                            "startColumn": 50,
+                            "endColumn": 67
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "location": {
+                        "id": 7,
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "src/main/java/BenchmarkTest02496.java",
+                            "uriBaseId": "%SRCROOT%"
+                          },
+                          "region": {
+                            "startLine": 46,
+                            "endLine": 46,
+                            "startColumn": 43,
+                            "endColumn": 48
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "location": {
+                        "id": 8,
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "src/main/java/BenchmarkTest02496.java",
+                            "uriBaseId": "%SRCROOT%"
+                          },
+                          "region": {
+                            "startLine": 74,
+                            "endLine": 74,
+                            "startColumn": 67,
+                            "endColumn": 79
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "location": {
+                        "id": 9,
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "src/main/java/BenchmarkTest02496.java",
+                            "uriBaseId": "%SRCROOT%"
+                          },
+                          "region": {
+                            "startLine": 81,
+                            "endLine": 81,
+                            "startColumn": 43,
+                            "endColumn": 48
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "location": {
+                        "id": 10,
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "src/main/java/BenchmarkTest02496.java",
+                            "uriBaseId": "%SRCROOT%"
+                          },
+                          "region": {
+                            "startLine": 81,
+                            "endLine": 81,
+                            "startColumn": 37,
+                            "endColumn": 48
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "location": {
+                        "id": 11,
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "src/main/java/BenchmarkTest02496.java",
+                            "uriBaseId": "%SRCROOT%"
+                          },
+                          "region": {
+                            "startLine": 84,
+                            "endLine": 84,
+                            "startColumn": 16,
+                            "endColumn": 19
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "location": {
+                        "id": 12,
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "src/main/java/BenchmarkTest02496.java",
+                            "uriBaseId": "%SRCROOT%"
+                          },
+                          "region": {
+                            "startLine": 46,
+                            "endLine": 46,
+                            "startColumn": 16,
+                            "endColumn": 49
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "location": {
+                        "id": 13,
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "src/main/java/BenchmarkTest02496.java",
+                            "uriBaseId": "%SRCROOT%"
+                          },
+                          "region": {
+                            "startLine": 58,
+                            "endLine": 58,
+                            "startColumn": 34,
+                            "endColumn": 47
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "location": {
+                        "id": 14,
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "src/main/java/BenchmarkTest02496.java",
+                            "uriBaseId": "%SRCROOT%"
+                          },
+                          "region": {
+                            "startLine": 58,
+                            "endLine": 58,
+                            "startColumn": 25,
+                            "endColumn": 48
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "location": {
+                        "id": 15,
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "src/main/java/BenchmarkTest02496.java",
+                            "uriBaseId": "%SRCROOT%"
+                          },
+                          "region": {
+                            "startLine": 58,
+                            "endLine": 58,
+                            "startColumn": 18,
+                            "endColumn": 48
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "location": {
+                        "id": 16,
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "src/main/java/BenchmarkTest02496.java",
+                            "uriBaseId": "%SRCROOT%"
+                          },
+                          "region": {
+                            "startLine": 62,
+                            "endLine": 62,
+                            "startColumn": 20,
+                            "endColumn": 24
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "location": {
+                        "id": 17,
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "src/main/java/BenchmarkTest02496.java",
+                            "uriBaseId": "%SRCROOT%"
+                          },
+                          "region": {
+                            "startLine": 62,
+                            "endLine": 62,
+                            "startColumn": 9,
+                            "endColumn": 19
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "priorityScore": 850,
+            "priorityScoreFactors": [
+              {
+                "label": true,
+                "type": "hotFileCodeFlow"
+              },
+              {
+                "label": true,
+                "type": "fixExamples"
+              }
+            ]
+          }
+        }
+      ],
+      "properties": {
+        "coverage": [
+          {
+            "files": 1,
+            "isSupported": true,
+            "lang": "XML"
+          },
+          {
+            "files": 1,
+            "isSupported": true,
+            "lang": "Java"
+          }
+        ]
+      }
+    }
+  ]
+}
