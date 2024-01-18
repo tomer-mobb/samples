@@ -44,7 +44,7 @@ jobs:
           output: results
 
       - name: Run Mobb on the findings and get fixes
-        if: failure()
+        if: always()
         uses: mobb-dev/action/review@beta0.0.5
         with:
           report-file: results/${{ matrix.codeql_output_filename }}
